@@ -8,15 +8,16 @@ from time import sleep
 
 # TODO: Proper logging
 
-# Get environment variables:
+# Get environment variables identifying the Route53 record to update. 
+# Set these variables manually and remove the while loop and sleep if running as a cron job.
 hosted_zone_id = os.environ["HOSTED_ZONE_ID"]
-target_record = os.environ["TARGET_RECORD"]
+target_record_name = os.environ["TARGET_RECORD_NAME"]  # your.site.com.
 ttl = int(os.environ["TTL"])
     
 client = boto3.client('route53')
 
 while True:
-    dns_ip = socket.gethostbyname('vpn.nickgoeben.com')
+    dns_ip = socket.gethostbyname(target_record_name[:-1])
     current_ip = get('https://api.ipify.org').text
     
     # Log
@@ -25,15 +26,15 @@ while True:
 
     if dns_ip != current_ip:
         response = client.change_resource_record_sets(
-        HostedZoneId='Z1ZWJJNHMY2MAJ',
-        ChangeBatch={'Comment': 'Updating VPN Record',
+        HostedZoneId = hosted_zone_id,
+        ChangeBatch = {'Comment': 'Updating VPN Record',
                      'Changes': [
                          {
                              'Action': 'UPSERT',
                              'ResourceRecordSet': {
-                                 'Name': 'vpn.nickgoeben.com.',
+                                 'Name': target_record_name,
                                  'Type': 'A',
-                                 'TTL': 30,
+                                 'TTL': ttl,
                                  'ResourceRecords': [
                                      {
                                          'Value': current_ip
