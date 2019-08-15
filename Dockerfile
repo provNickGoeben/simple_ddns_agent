@@ -4,4 +4,4 @@ ADD main.py /
 
 RUN pip install boto3
 
-CMD [ "python3", "./main.py" ]
+CMD [ "python3", "./ddns-docker.py" ]
