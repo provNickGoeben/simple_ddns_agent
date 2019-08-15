@@ -1,6 +1,6 @@
 FROM python:3
 
-RUN pip install boto3 requests
+RUN pip3 install boto3 requests awscli
 
 ADD ddns-docker.py /
 
