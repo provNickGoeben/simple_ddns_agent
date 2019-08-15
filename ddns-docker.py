@@ -47,6 +47,6 @@ while True:
         )
         print(response)
     else:
-        print("IP is current, no changes made"
+        print("IP is current, no changes made")
               
     sleep(60 * interval_mins)
