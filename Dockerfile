@@ -1,7 +1,7 @@
 FROM python:3
 
-ADD ddns-docker.py /
+RUN pip install boto3 requests
 
-RUN pip install boto3
+ADD ddns-docker.py /
 
 CMD [ "python3", "./ddns-docker.py" ]
