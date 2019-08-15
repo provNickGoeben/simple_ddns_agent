@@ -44,8 +44,8 @@ while True:
                          },
                      ]
                      }
-        print(response)
         )
+        print(response)
     else:
         print("IP is current, no changes made"
               
