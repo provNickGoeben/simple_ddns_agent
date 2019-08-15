@@ -8,11 +8,11 @@ from time import sleep
 
 # TODO: Proper logging
 
-# Get environment variables identifying the Route53 record to update. 
-# Set these variables manually and remove the while loop and sleep if running as a cron job.
+# Get config from environment variables:
 hosted_zone_id = os.environ["HOSTED_ZONE_ID"]
 target_record_name = os.environ["TARGET_RECORD_NAME"]  # your.site.com.
 ttl = int(os.environ["TTL"])
+interval_mins = int(os.environ["INTERVAL_MINS"])
     
 client = boto3.client('route53')
 
@@ -48,5 +48,4 @@ while True:
 
     print(response)
     
-    sleep_interval = 15  # In Minutes
-    sleep(60 * sleep_interval)
+    sleep(60 * interval_mins)
