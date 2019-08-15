@@ -1,6 +1,6 @@
 FROM python:3
 
-ADD main.py /
+ADD ddns-docker.py /
 
 RUN pip install boto3
 
