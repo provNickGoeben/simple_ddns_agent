@@ -15,7 +15,6 @@ Create an IAM policy in AWS with the minimum necessary access:
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "VisualEditor0",
             "Effect": "Allow",
             "Action": [
                 "route53:ChangeResourceRecordSets",
@@ -39,7 +38,7 @@ pip3 install awscli
 aws configure
 ```
 
-## Running
+## Deploy
 ### As a cron job every 15m:
 ```
 0,15,30,45 * * * * python3 /path/to/repo/ddns-cron.py
