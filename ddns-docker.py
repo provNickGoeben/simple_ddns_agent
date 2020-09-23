@@ -8,7 +8,6 @@ from requests import get
 from time import sleep
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
 r53 = boto3.client('route53')
 
 # ======================================================= CONFIG/ENV
@@ -51,7 +50,7 @@ def upsert_record(target_record, ip):
                          }
         )
         logger.debug(response)
-        logger.info(f"Record updated")
+        logger.warning(f"{target_record} updated to {ip}")
     except NoCredentialsError:
         raise RuntimeError("Problem locating AWS credentials.\n"
                            "Make sure your credentials file exists on the host: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html\n"
@@ -68,15 +67,15 @@ if __name__ == "__main__":
             dns_ip = socket.gethostbyname(target_record_name[:-1])
         except socket.gaierror as e:
             logger.error(e)
-            logger.warning(f"Unable to resolve the target DNS record, it may not exist yet. {target_record_name=}")
+            logger.warning(f"Unable to resolve the target DNS record, it may not exist yet. "
+                           f"Will attempt to create '{target_record_name}'")
             dns_ip = None
 
         # If they're different, update the target record
-        logger.debug(f"{dns_ip=} {actual_ip=}")
+        logger.warning(f"{dns_ip=} {actual_ip=}")
         if dns_ip != actual_ip:
-            logger.info(f"New IP detected: {actual_ip}  Updating route53...")
+            logger.warning(f"Updating route53 to {actual_ip}")
             upsert_record(target_record_name, actual_ip)
-        else:
-            logger.info(f"{actual_ip} is current. Sleeping for {interval_mins}m")
 
+        logger.warning(f"Sleeping for {interval_mins}m")
         sleep(60 * interval_mins)
