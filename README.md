@@ -38,7 +38,7 @@ pip3 install awscli
 aws configure
 ```
 
-### Via Docker Hub
+### Via [Docker Hub](https://hub.docker.com/repository/docker/nickgoeben/simple_ddns_agent)
 ```
 docker run -d --restart=unless-stopped \
 -v $HOME/.aws:/root/.aws \
