@@ -66,10 +66,9 @@ if __name__ == "__main__":
         try:
             dns_ip = socket.gethostbyname(target_record_name[:-1])
         except socket.gaierror as e:
-            if e.errno == 8:  # Unable to resolve the target DNS record, it may not exist yet
-                dns_ip = None
-            else:
-                raise e
+            logger.error(e)
+            logger.warning(f"Unable to resolve the target DNS record, it may not exist yet. {target_record_name=}")
+            dns_ip = None
 
         # If they're different, update the target record
         logger.debug(f"{dns_ip=} {actual_ip=}")
