@@ -8,11 +8,21 @@ from requests import get
 from time import sleep
 
 logger = logging.getLogger(__name__)
-r53 = boto3.client('route53')
 
 # ======================================================= CONFIG/ENV
 hosted_zone_id = os.environ["HOSTED_ZONE_ID"]
 target_record_name = os.environ["TARGET_RECORD_NAME"]  # your.site.com.
+
+try:
+    # AWS env vars specified
+    session = boto3.Session(
+        aws_access_key_id=os.environ['AWS_ACCESS_KEY_ID'],
+        aws_secret_access_key=os.environ['AWS_SECRET_ACCESS_KEY']
+    )
+    r53 = session.client('route53')
+except KeyError:
+    # Use .aws/credentials file
+    r53 = boto3.client('route53')
 
 try:
     ttl = int(os.environ["TTL"])
