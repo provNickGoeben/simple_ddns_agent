@@ -1,6 +1,7 @@
 # A truly simple DDNS agent
 
 An alternative for homelabs that don't want to pay for a static IP.
+Verified up to date: Sept 2020
 
 ## Prerequisites / Preparing AWS and credentials
 
@@ -36,6 +37,12 @@ pip3 install awscli
 [Configure awscli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration)
 ```
 aws configure
+```
+
+## Running
+### As a cron job every 15m:
+```
+0,15,30,45 * * * * python3 /path/to/repo/ddns-cron.py
 ```
 
 ### Via [Docker Hub](https://hub.docker.com/repository/docker/nickgoeben/simple_ddns_agent)
