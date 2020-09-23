@@ -74,7 +74,7 @@ if __name__ == "__main__":
         # If they're different, update the target record
         logger.warning(f"{dns_ip=} {actual_ip=}")
         if dns_ip != actual_ip:
-            logger.warning(f"Updating route53 to {actual_ip}")
+            logger.info(f"Updating to {actual_ip}")
             upsert_record(target_record_name, actual_ip)
 
         logger.warning(f"Sleeping for {interval_mins}m")
