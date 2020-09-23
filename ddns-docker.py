@@ -8,6 +8,7 @@ from requests import get
 from time import sleep
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 r53 = boto3.client('route53')
 
 # ======================================================= CONFIG/ENV
