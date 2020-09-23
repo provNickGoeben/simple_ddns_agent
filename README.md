@@ -40,7 +40,15 @@ aws configure
 
 ### Via Docker Hub
 ```
-docker pull nickgoeben/simple_ddns_agent
+docker run -d --restart=unless-stopped \
+-v $HOME/.aws:/root/.aws \
+-e HOSTED_ZONE_ID="YOURHOSTEDZONEID" \
+-e TARGET_RECORD_NAME="YOURLAB.YOURSITE.com." \
+--name ddns nickgoeben/simple_ddns_agent
+```
 
-docker run -d --restart=unless-stopped -v $HOME/.aws:/root/.aws -e HOSTED_ZONE_ID="YOURHOSTEDZONEID" -e TARGET_RECORD_NAME="YOURLAB.YOURSITE.com." -e TTL="300" -e INTERVAL_MINS="20" --name ddns nickgoeben/simple_ddns_agent
+Optional args:
+```
+-e TTL="300" 
+-e INTERVAL_MINS="20"
 ```
