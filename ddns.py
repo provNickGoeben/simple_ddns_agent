@@ -68,6 +68,10 @@ def upsert_record(target_record, ip):
 
 
 if __name__ == "__main__":
+
+    # Verify AWS creds and hosted zone target are valid
+    r53.list_resource_record_sets(HostedZoneId=hosted_zone_id)
+
     while True:
         # Get our current public IP
         actual_ip = get('https://api.ipify.org').text
