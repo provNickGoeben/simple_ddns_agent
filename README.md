@@ -1,7 +1,9 @@
 # A truly simple DDNS agent
 
-An alternative for homelabs that don't want to pay for a static IP.
-Verified up to date: Sept 2020
+- An alternative for homelabs that don't want to pay for a static IP.
+- Runs out of the box via python and docker, for helm charts pass your aws secrets as environment variables.
+- Verified up to date: Sept 2020
+
 
 ## Prerequisites / Preparing AWS and credentials
 
@@ -39,9 +41,11 @@ aws configure
 ```
 
 ## Deploy
-### As a cron job every 15m:
+### As a python process:
 ```
-0,15,30,45 * * * * python3 /path/to/repo/ddns-cron.py
+export HOSTED_ZONE_ID="YOURHOSTEDZONEID"
+export TARGET_RECORD_NAME="YOURLAB.YOURSITE.com."
+python3 /path/to/repo/ddns-cron.py
 ```
 
 ### Via [Docker Hub](https://hub.docker.com/repository/docker/nickgoeben/simple_ddns_agent)
