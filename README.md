@@ -1,6 +1,6 @@
 # A truly simple DDNS agent
 
-- An alternative for homelabs that don't want to pay for a static IP.
+- An alternative for homelabs that don't want to pay for a static IP or DDNS providers.
 - Runs out of the box via python and docker. For helm charts pass your aws secrets as environment variables.
 - Verified up to date: Sept 2020
 
