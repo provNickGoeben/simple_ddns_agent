@@ -9,7 +9,7 @@
 
 You will need an AWS Route53 domain and hosted zone if you don't already have one. These are around $10/year
 
-Create an IAM policy in AWS with the minimum necessary access:
+Create an IAM policy in AWS with the minimum necessary access to your DNS zone:
 ```
 {
     "Version": "2012-10-17",
@@ -26,7 +26,7 @@ Create an IAM policy in AWS with the minimum necessary access:
 }
 ```
 
-Create an IAM user and attach the policy created above. Generate access key/secret for this account.
+Create an IAM user and attach the policy created above. Generate an access key and secret for this account.
 
 [install awscli on your host](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
 ```
