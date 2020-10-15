@@ -5,7 +5,7 @@
 - Verified up to date: Sept 2020
 
 
-## Prerequisites / Preparing AWS and credentials
+## Prepare an AWS secret with limited privileges
 
 You will need an AWS Route53 domain and hosted zone if you don't already have one. These are around $10/year
 
