@@ -7,9 +7,7 @@
 
 ## Prerequisites / Preparing AWS and credentials
 
-You will need a Route53 hosted zone if you don't already have one. 
-You will need to know your hosted zone's ID, 
-and you should have a DNS name in mind like "lab.mysite.com." Include the trailing '.'
+You will need an AWS Route53 domain and hosted zone if you don't already have one. These are around $10/year
 
 Create an IAM policy in AWS with the minimum necessary access:
 ```
