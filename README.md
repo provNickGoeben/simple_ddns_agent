@@ -33,12 +33,12 @@ Create an IAM user and attach the policy created above. Generate an access key a
 pip3 install awscli
 ```
 
-[Configure awscli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration)
+[Configure awscli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration) on your local host or server
 ```
 aws configure
 ```
 
-## Deploy
+## Deploy to your homelab
 ### As a python process:
 ```
 export HOSTED_ZONE_ID="YOURHOSTEDZONEID"
