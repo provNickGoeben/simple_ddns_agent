@@ -28,25 +28,28 @@ Create an IAM policy in AWS with the minimum necessary access to your DNS zone:
 
 Create an IAM user and attach the policy created above. Generate an access key and secret for this account.
 
-[install awscli on your host](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+
+## Deploy to your homelab
+
+### Configure AWS credentials on your homelab server/host
+#### [install awscli on your host](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
 ```
 pip3 install awscli
 ```
 
-[Configure awscli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration) on your local host or server
+#### [Configure awscli](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration)
 ```
 aws configure
 ```
 
-## Deploy to your homelab
-### As a python process:
+### Deploy as a python process:
 ```
 export HOSTED_ZONE_ID="YOURHOSTEDZONEID"
 export TARGET_RECORD_NAME="YOURLAB.YOURSITE.com."
 python3 ddns.py
 ```
 
-### Via [Docker Hub](https://hub.docker.com/repository/docker/nickgoeben/simple_ddns_agent)
+### Deploy via [Docker Hub](https://hub.docker.com/repository/docker/nickgoeben/simple_ddns_agent)
 ```
 docker run -d --restart=unless-stopped \
 -v $HOME/.aws:/root/.aws \
